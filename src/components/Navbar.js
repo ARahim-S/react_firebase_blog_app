@@ -8,9 +8,12 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import appLogo from "../assets/appbloglogo.svg";
+import { useAuth } from "../context/AuthContextProvider";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const { currentUser } = useAuth();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -62,24 +65,53 @@ export default function Navbar() {
             >
               <AccountCircle style={{ fontSize: "40px" }} />
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
-            </Menu>
+            {currentUser?.email ? (
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <Link className="header-link" to={"/login"}>
+                  <MenuItem onClick={handleClose}>Profile</MenuItem>
+                </Link>
+                <Link className="header-link" to={"/register"}>
+                  <MenuItem onClick={handleClose}>Blog</MenuItem>
+                </Link>
+              </Menu>
+            ) : (
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <Link className="header-link" to={"/login"}>
+                  <MenuItem onClick={handleClose}>Login</MenuItem>
+                </Link>
+                <Link className="header-link" to={"/register"}>
+                  <MenuItem onClick={handleClose}>Register</MenuItem>
+                </Link>
+              </Menu>
+            )}
           </div>
         </Toolbar>
       </AppBar>

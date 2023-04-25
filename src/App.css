@@ -15,3 +15,8 @@
   max-width: 50px;
   filter: invert(100%);
 }
+
+.header-link {
+  text-decoration: none;
+  color: #000;
+}
