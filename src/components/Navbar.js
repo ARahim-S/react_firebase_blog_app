@@ -81,11 +81,14 @@ export default function Navbar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <Link className="header-link" to={"/login"}>
+                <Link className="header-link" to={"/profile"}>
                   <MenuItem onClick={handleClose}>Profile</MenuItem>
                 </Link>
-                <Link className="header-link" to={"/register"}>
-                  <MenuItem onClick={handleClose}>Blog</MenuItem>
+                <Link className="header-link" to={"/new-blog"}>
+                  <MenuItem onClick={handleClose}>New Blog</MenuItem>
+                </Link>
+                <Link className="header-link" to={"/"}>
+                  <MenuItem onClick={handleClose}>Logout</MenuItem>
                 </Link>
               </Menu>
             ) : (
