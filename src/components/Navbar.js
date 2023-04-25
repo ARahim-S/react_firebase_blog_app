@@ -9,11 +9,12 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import appLogo from "../assets/appbloglogo.svg";
 import { useAuth } from "../context/AuthContextProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
+  const navigate = useNavigate();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -21,6 +22,14 @@ export default function Navbar() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleLogout = () => {
+    setAnchorEl(null);
+    logout();
+  };
+  const handleDashBoard = () => {
+    setAnchorEl(null);
+    navigate("/");
   };
 
   return (
@@ -43,6 +52,7 @@ export default function Navbar() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={handleDashBoard}
           >
             <img className="header-logo" src={appLogo} alt="logo" />
           </IconButton>
@@ -51,8 +61,11 @@ export default function Navbar() {
             component="div"
             sx={{ flexGrow: 1, textAlign: "center" }}
           >
-            ---- <span className="navbar-header">{"<ARahim-S/>"}</span> BLOG
-            ----
+            ----{" "}
+            <span onClick={() => navigate("/")} className="navbar-header">
+              {"<ARahim-S/>"}
+            </span>{" "}
+            BLOG ----
           </Typography>
           <div>
             <IconButton
@@ -88,7 +101,7 @@ export default function Navbar() {
                   <MenuItem onClick={handleClose}>New Blog</MenuItem>
                 </Link>
                 <Link className="header-link" to={"/"}>
-                  <MenuItem onClick={handleClose}>Logout</MenuItem>
+                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </Link>
               </Menu>
             ) : (

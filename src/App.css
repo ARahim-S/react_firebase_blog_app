@@ -1,6 +1,7 @@
 .navbar-header {
   font-size: 2rem;
   color: wheat;
+  cursor: pointer;
 }
 
 .MuiTypography-h6 {
