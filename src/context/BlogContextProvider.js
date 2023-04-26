@@ -20,9 +20,17 @@ const BlogContextProvider = ({ children }) => {
     try {
       const blogRef = ref(firebaseDB, "blog");
       const newBlog = push(blogRef);
-      set(newBlog, blogvalue);
+      set(newBlog, {
+        author: blogvalue.author,
+        title: blogvalue.title,
+        content: blogvalue.content,
+        get_comment_count: blogvalue.get_comment_count,
+        get_like_count: blogvalue.get_like_count,
+        image: blogvalue.image,
+        published_date: blogvalue.published_date,
+      });
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.message || error);
     }
   };
 
