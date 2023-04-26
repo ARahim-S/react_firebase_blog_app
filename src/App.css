@@ -21,3 +21,85 @@
   text-decoration: none;
   color: #000;
 }
+
+/* login-register css */
+
+.form-root {
+  height: 90vh;
+}
+
+.form-paper-root {
+  border-radius: 30px;
+  box-shadow: 10px 10px 5px 0 rgba(0, 0, 0, 0.75);
+  height: fit-content;
+  margin-top: 30;
+  max-width: 500px;
+}
+
+.form-image {
+  background-image: url(https://picsum.photos/1600/900);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  padding-top: 40px;
+}
+
+.form-paper {
+  margin: 10px;
+  align-items: center;
+}
+
+.form-avatar {
+  margin: 0 auto 10px;
+  background-color: #045692;
+}
+
+.form-form {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.form-submit-btn {
+  background-color: #046592;
+  color: white;
+  font-weight: bold;
+}
+.form-submit:hover {
+  color: #046592;
+}
+
+.form-btn-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.form-header {
+  font-family: "Girassol";
+  text-align: center;
+  color: #046592;
+}
+
+.form-loadingGif {
+  width: 10%;
+}
+
+.form-loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.form-googleImg {
+  width: 20px;
+  margin-left: 10px;
+}
+
+.form-google-btn {
+  background-color: rgb(180, 39, 39);
+  font-weight: bold;
+}
