@@ -34,7 +34,7 @@ const BlogContextProvider = ({ children }) => {
     }
   };
 
-  const getOneBlog = async (id) => {
+  const getOneBlog = (id) => {
     try {
       const result = currentBlogs?.filter((item) => item.id === id);
       return result;

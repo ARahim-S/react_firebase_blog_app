@@ -25,7 +25,7 @@ const Detail = () => {
   const result = getOneBlog(id);
 
   const res = result ? result[0] : { title: "", content: "", image: "" };
-
+  console.log(res.image);
   const deleteHandler = (id) => {
     deleteOneBlog(id);
     navigate("/");
@@ -45,6 +45,7 @@ const Detail = () => {
         <div>
           <CardMedia
             className="detail-media"
+            component="img"
             image={res.image}
             title={res.title}
           />
