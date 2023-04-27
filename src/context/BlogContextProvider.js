@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { firebaseDB } from "../utils/firebaseUtil";
-import { ref, onValue, push, set } from "firebase/database";
+import { ref, onValue, push, set, update } from "firebase/database";
 import { toast } from "react-toastify";
 
 //! Create context for authentication data
@@ -55,8 +55,10 @@ const BlogContextProvider = ({ children }) => {
 
   const updateBlog = async (id, data) => {
     try {
-      const contactRef = ref(firebaseDB, "blog" + id);
-      contactRef.update(data);
+      const updates = {};
+      updates["blog/" + id] = data;
+      update(ref(firebaseDB), updates);
+      return;
     } catch (error) {
       toast.error(error.message);
     }
