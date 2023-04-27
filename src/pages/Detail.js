@@ -25,7 +25,6 @@ const Detail = () => {
   const result = getOneBlog(id);
 
   const res = result ? result[0] : { title: "", content: "", image: "" };
-  console.log(res.image);
   const deleteHandler = (id) => {
     deleteOneBlog(id);
     navigate("/");
