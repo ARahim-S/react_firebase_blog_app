@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useBlog } from "../context/BlogContextProvider";
 import BlogForm from "../components/BlogForm";
@@ -12,11 +12,15 @@ const UpdateBlog = ({ match }) => {
   const { getOneBlog, updateBlog } = useBlog();
   const result = getOneBlog(id);
   const res = result ? result[0] : { title: "", content: "", image: "" };
-  const [updatedBlog] = useState(res);
+  const [updatedBlog, setUpdatedBlog] = useState(res);
 
-  const handler = (updatedBlog) => {
+  useEffect(() => {
+    setUpdatedBlog(res);
+  }, [res]);
+
+  const handler = (blogToUpDate) => {
     try {
-      updateBlog(res?.id, updatedBlog);
+      updateBlog(res?.id, blogToUpDate);
       navigate("/");
       toast.success("Blog updated");
     } catch (error) {

@@ -1,11 +1,15 @@
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const BlogForm = (props) => {
   const { blog, handler } = props;
   const [newBlog, setNewBlog] = useState(blog);
+
+  useEffect(() => {
+    setNewBlog(blog);
+  }, [blog]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

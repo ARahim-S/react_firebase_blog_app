@@ -28,7 +28,6 @@ const Detail = () => {
   const deleteHandler = (id) => {
     deleteOneBlog(id);
     navigate("/");
-    toast.success("Blog Deleted successfully!");
   };
 
   const updateHandler = (id) => {
@@ -45,7 +44,7 @@ const Detail = () => {
           <CardMedia
             className="detail-media"
             component="img"
-            image={res.image}
+            image={res?.image}
             title={res.title}
           />
           <CardContent className="detail-card-content">

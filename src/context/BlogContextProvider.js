@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { firebaseDB } from "../utils/firebaseUtil";
-import { ref, onValue, push, set, update } from "firebase/database";
+import { ref, onValue, push, set, update, remove } from "firebase/database";
 import { toast } from "react-toastify";
 
 //! Create context for authentication data
@@ -45,8 +45,7 @@ const BlogContextProvider = ({ children }) => {
 
   const deleteOneBlog = async (id) => {
     try {
-      const blogIdRef = ref(firebaseDB, "blog" + id);
-      blogIdRef.remove();
+      remove(ref(firebaseDB, "blog/" + id));
       toast.success("Blog deleted successfully!");
     } catch (error) {
       toast.error(error.message);
@@ -56,7 +55,9 @@ const BlogContextProvider = ({ children }) => {
   const updateBlog = async (id, data) => {
     try {
       const updates = {};
+
       updates["blog/" + id] = data;
+      console.log(updates["blog/" + id]);
       update(ref(firebaseDB), updates);
       return;
     } catch (error) {
