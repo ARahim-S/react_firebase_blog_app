@@ -11,7 +11,6 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { toast } from "react-toastify";
 import moment from "moment";
 import { AccountCircle, ChatBubbleOutline } from "@mui/icons-material";
 import { useBlog } from "../context/BlogContextProvider";
