@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useBlog } from "../context/BlogContextProvider";
 import BlogForm from "../components/BlogForm";
@@ -11,7 +11,11 @@ const UpdateBlog = ({ match }) => {
   const navigate = useNavigate();
   const { getOneBlog, updateBlog } = useBlog();
   const result = getOneBlog(id);
-  const res = result ? result[0] : { title: "", content: "", image: "" };
+
+  const res = useMemo(() => {
+    return result ? result[0] : { title: "", content: "", image: "" };
+  }, [result]);
+
   const [updatedBlog, setUpdatedBlog] = useState(res);
 
   useEffect(() => {

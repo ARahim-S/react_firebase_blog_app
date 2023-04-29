@@ -5,12 +5,11 @@ import { CardContent, Typography, Paper, Grid } from "@mui/material";
 
 const Profile = () => {
   const { currentUser } = useAuth();
-  console.log(currentUser);
 
   return (
     <div className="profile-mainDiv">
       <Grid container>
-        <Paper>
+        <Paper className="profile-paper">
           <Card className="profileRoot">
             <img
               style={{
