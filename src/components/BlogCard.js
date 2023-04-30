@@ -43,15 +43,14 @@ export default function BlogCard({ post }) {
   const handleLikeClick = (id) => {
     if (!currentUser) {
       toast.error("Please log in to click the like button");
+    } else {
+      setNewBlog((newBlog) => ({
+        ...newBlog,
+        get_like_count: (newBlog.get_like_count += 1),
+      }));
+
+      updateBlog(newBlog?.id, newBlog);
     }
-    setNewBlog((newBlog) => ({
-      ...newBlog,
-      get_like_count: (newBlog.get_like_count += 1),
-    }));
-
-    console.log(newBlog);
-
-    updateBlog(newBlog?.id, newBlog);
   };
 
   return (
