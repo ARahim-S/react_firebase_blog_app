@@ -1,4 +1,3 @@
-import * as React from "react";
 import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardMedia from "@mui/material/CardMedia";
@@ -12,8 +11,12 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import moment from "moment";
 import { AccountCircle, ChatBubbleOutline } from "@mui/icons-material";
+import { useState } from "react";
+import { useBlog } from "../context/BlogContextProvider";
 
 export default function BlogCard({ post }) {
+  const [newBlog, setNewBlog] = useState(post);
+  const { updateBlog } = useBlog();
   const {
     id,
     author,
@@ -26,7 +29,6 @@ export default function BlogCard({ post }) {
   } = post;
   const { currentUser } = useAuth();
   const navigate = useNavigate();
-  const [expanded, setExpanded] = React.useState(false);
 
   const placeholder = "https://picsum.photos/400/400";
 
@@ -36,6 +38,20 @@ export default function BlogCard({ post }) {
     }
 
     navigate(`/detail/${id}`);
+  };
+
+  const handleLikeClick = (id) => {
+    if (!currentUser) {
+      toast.error("Please log in to click the like button");
+    }
+    setNewBlog((newBlog) => ({
+      ...newBlog,
+      get_like_count: (newBlog.get_like_count += 1),
+    }));
+
+    console.log(newBlog);
+
+    updateBlog(newBlog?.id, newBlog);
   };
 
   return (
@@ -77,7 +93,11 @@ export default function BlogCard({ post }) {
         </Typography>
       </CardActions>
       <CardActions>
-        <IconButton aria-label="add to favorites" className="icon-image">
+        <IconButton
+          aria-label="add to favorites"
+          className="icon-image"
+          onClick={handleLikeClick}
+        >
           <FavoriteIcon color={get_like_count > 0 ? "secondary" : "disabled"} />
         </IconButton>
         <Typography variant="body2" color={"text.secondary"}>

@@ -53,6 +53,7 @@ const BlogContextProvider = ({ children }) => {
   };
 
   const updateBlog = async (id, data) => {
+    console.log(data);
     try {
       const updates = {};
 

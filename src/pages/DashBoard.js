@@ -6,6 +6,7 @@ import BlogCard from "../components/BlogCard";
 
 const DashBoard = () => {
   const { currentBlogs } = useBlog();
+
   return (
     <div className="dashboard-main">
       <Typography
